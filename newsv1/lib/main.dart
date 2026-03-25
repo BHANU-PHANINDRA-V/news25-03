@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
+import 'package:provider/provider.dart';
+import 'providers/news_provider.dart';
+import 'screens/home_screen.dart';
+import 'utils/app_theme.dart';
 
 void main() {
-  runApp(const NewsApp());
+  runApp(const MyApp());
 }
 
-class NewsApp extends StatelessWidget {
-  const NewsApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'News App',
-      home: LoginPage(),
+    return ChangeNotifierProvider(
+      create: (_) => NewsProvider(),
+      child: MaterialApp(
+        title: 'AP NewsWatch',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.light,
+        home: const HomeScreen(),
+      ),
     );
   }
 }
